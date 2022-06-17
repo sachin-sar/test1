@@ -4,29 +4,14 @@ from telegram.ext import CommandHandler
 from threading import Thread
 from time import sleep
 
-from bot.helper.mirror.upload.gdrive_helper import GoogleDriveHelper
-from bot.helper.tg_helper.msg_utils import (
-    sendMessage,
-    sendMarkup,
-    deleteMessage,
-    delete_all_messages,
-    update_all_messages,
-    sendStatusMessage,
-)
-from bot.helper.tg_helper.filters import CustomFilters
-from bot.helper.mirror.status.clone_status import CloneStatus
-from bot import (
-    dispatcher,
-    LOGGER,
-    CLONE_LIMIT,
-    STOP_DUPLICATE,
-    download_dict,
-    download_dict_lock,
-    Interval,
-)
-from bot.helper.others.bot_utils import *
-from bot.helper.mirror.download.link_generator import *
-from bot.helper.others.exceptions import DirectDownloadLinkException
+from bot.helper.mirror_utils.upload_utils.gdriveTools import GoogleDriveHelper
+from bot.helper.telegram_helper.msg_utils import sendMessage,sendMarkup,deleteMessage,delete_all_messages,update_all_messages,sendStatusMessage
+from bot.helper.telegram_helper.filters import CustomFilters
+from bot.helper.mirror_utils.status_utils.clone_status import CloneStatus
+from bot import dispatcher, LOGGER, CLONE_LIMIT, STOP_DUPLICATE, download_dict, download_dict_lock, Interval
+from bot.helper.ext_utils.bot_utils import *
+from bot.helper.mirror_utils.download.link_generator import *
+from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 
 
 def _clone(message, bot, multi=0):
