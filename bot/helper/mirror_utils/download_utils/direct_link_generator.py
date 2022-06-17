@@ -527,6 +527,7 @@ def udrive(url: str) -> str:
     
     try:
         res = client.post(req_url, headers=headers, data=data).json()['file']
+        gd_id = re_findall('gd=(.*)', res, re.DOTALL)[0]
     except: 
       return {'error': True, 'src_url': url}
     
@@ -541,4 +542,4 @@ def udrive(url: str) -> str:
     if not info_parsed['error']:
         return info_parsed
     else:
-        raise DirectDownloadLinkException(f"{info_parsed['error_message']}")
+        raise DirectDownloadLinkException(f"Unable to Extract GDrive Link")
